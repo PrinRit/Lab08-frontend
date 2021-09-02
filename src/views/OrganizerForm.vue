@@ -1,19 +1,19 @@
 <template>
     <div>
-        <h1>Create an event</h1>
-        <form @submit.prevent="saveEvent">
+        <h1>Create an organization</h1>
+        <form @submit.prevent="saveOrganization">
             <label>Category</label>
             <input
-                v-model="event.category"
+                v-model="organizer.category"
                 type="text"
                 placeholder="Category"
                 class="field"
             />
-            <h3>Name & describe your event</h3>
+            <h3>Name & describe your organization</h3>
 
             <label>Title</label>
             <input 
-                v-model="event.title"
+                v-model="organizer.title"
                 type="text"
                 placeholder="Title"
                 class="field"
@@ -21,16 +21,16 @@
 
             <label>Description</label>
             <input 
-                v-model="event.description"
+                v-model="organizer.description"
                 type="text"
                 placeholder="Description"
                 class="field"
             />
 
-            <h3>Where is your event?</h3>
+            <h3>Where is your organization?</h3>
             <label>Location</label>
             <input 
-                v-model="event.location"
+                v-model="organizer.location"
                 type="text"
                 placeholder="Location"
                 class="field"
@@ -38,7 +38,7 @@
             <button type="submit">Submit</button>
         </form>
 
-        <pre>{{ event }}</pre>
+        <pre>{{ organizer }}</pre>
     </div>
 </template>
 <script>
@@ -47,7 +47,7 @@ export default {
     inject:['GStore'],
     data() {
         return {
-            event: {
+            organizer: {
                 category: '',
                 title: '',
                 description: '',
@@ -56,8 +56,8 @@ export default {
         }
     },
     methods: {
-        saveEvent(){
-            EventService.saveEvent(this.event)
+        saveOrganization(){
+            EventService.saveOrganization(this.organizer)
             .then((response)=> {
                 console.log(response)
                 this.$router.push({
@@ -65,7 +65,7 @@ export default {
                     params: {id: response.data.id}
                 })
                 this.GStore.flashMessage = 
-                'You are successfullly add a new event for ' + response.data.title
+                'You are successfullly add a new organization for ' + response.data.title
                 setTimeout(()=>{
                     this.GStore.flashMessage = ''
                 },3000)

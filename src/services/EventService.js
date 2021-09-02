@@ -19,5 +19,8 @@ export default {
   },
   saveEvent(event){
     return apiClient.post('/events',event)
+  },
+  saveOrganization(organizer){
+    return apiClient.post('/organizers',organizer)
   }
 }
